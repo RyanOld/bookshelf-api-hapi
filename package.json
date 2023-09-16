@@ -1,0 +1,7 @@
+{
+  "name": "dicoding-backend-bookshelf",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "RyanOlder <68904054+RyanOld@users.noreply.github.com>",
+  "license": "MIT"
+}
