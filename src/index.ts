@@ -2,7 +2,7 @@ import Hapi from "@hapi/hapi";
 
 const init = async (): Promise<void> => {
   const server = Hapi.server({
-    port: 5000,
+    port: 9000,
     host: "localhost",
   });
 
