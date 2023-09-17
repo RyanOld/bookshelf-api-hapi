@@ -18,16 +18,20 @@ export const modifyOneBook = async (
   } = request.payload as BookRequest;
   // implement checks
   if (name === undefined) {
-    return h.response({
-      status: "fail",
-      message: "Gagal memperbarui buku. Mohon isi nama buku",
-    });
+    return h
+      .response({
+        status: "fail",
+        message: "Gagal memperbarui buku. Mohon isi nama buku",
+      })
+      .code(400);
   } else if (readPage > pageCount) {
-    return h.response({
-      status: "fail",
-      message:
-        "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount",
-    });
+    return h
+      .response({
+        status: "fail",
+        message:
+          "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount",
+      })
+      .code(400);
   }
 
   // read books data
@@ -41,10 +45,12 @@ export const modifyOneBook = async (
 
   // return error if book with matching id not found
   if (matchingBook === undefined) {
-    return h.response({
-      status: "fail",
-      message: "Gagal memperbarui buku. Id tidak ditemukan",
-    });
+    return h
+      .response({
+        status: "fail",
+        message: "Gagal memperbarui buku. Id tidak ditemukan",
+      })
+      .code(404);
   } else {
     // do operations here. then send success message.
     const newBookData: BookStorage = {
