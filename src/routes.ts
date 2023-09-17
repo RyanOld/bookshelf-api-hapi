@@ -1,5 +1,5 @@
 import type { Request, ResponseToolkit, ServerRoute } from "@hapi/hapi";
-import { addBook } from "./handler/addBook";
+import { addOneBook } from "./handler/addOneBook";
 import { readBooks } from "./handler/readBooks";
 import { readOneBook } from "./handler/readOneBook";
 
@@ -8,7 +8,7 @@ export const routes: ServerRoute[] = [
   {
     method: "POST",
     path: "/books",
-    handler: addBook,
+    handler: addOneBook,
   },
   // Kriteria 4 : API dapat menampilkan seluruh buku
   {

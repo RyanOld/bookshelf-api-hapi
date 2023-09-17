@@ -3,7 +3,7 @@ import type { BookRequest, BookStorage } from "../types";
 import { nanoid } from "nanoid";
 import { getBooksData, writeBooksData } from "./dataManager";
 
-export const addBook = async (
+export const addOneBook = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
