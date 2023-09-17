@@ -12,7 +12,7 @@ export interface BookRequest {
 
 // assert BookStorage as "any object"
 export interface BookStorage {
-  id: string;
+  bookId: string;
   name: string;
   year: number;
   author: string;

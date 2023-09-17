@@ -25,7 +25,7 @@ export const addBook = async (
   const dateAdded = new Date().toISOString();
   // create book data with added id and date added.
   const newBook: BookStorage = {
-    id: bookId,
+    bookId,
     name,
     year,
     author,
@@ -46,11 +46,17 @@ export const addBook = async (
   const booksData = fs.readFileSync(dataPath, "utf-8");
   console.log(booksData);
   // append
-  const parsedBook = JSON.parse(booksData) as BookStorage[];
-  const newBooks = parsedBook.concat([newBook]);
+  const parsedBooks = JSON.parse(booksData) as BookStorage[];
+  const newBooks = parsedBooks.concat([newBook]);
   console.log(newBooks);
   // rewrite
   fs.writeFileSync(dataPath, JSON.stringify(newBooks));
 
-  return h.response({ books: newBooks });
+  return h
+    .response({
+      status: "success",
+      message: "Buku berhasil ditambahkan",
+      data: newBook,
+    })
+    .code(201);
 };
