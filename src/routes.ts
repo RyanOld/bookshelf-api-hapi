@@ -2,6 +2,7 @@ import type { Request, ResponseToolkit, ServerRoute } from "@hapi/hapi";
 import { addOneBook } from "./handler/addOneBook";
 import { readBooks } from "./handler/readBooks";
 import { readOneBook } from "./handler/readOneBook";
+import { modifyOneBook } from "./handler/modifyOneBook";
 
 export const routes: ServerRoute[] = [
   // Kriteria 3 : API dapat menyimpan buku
@@ -26,9 +27,7 @@ export const routes: ServerRoute[] = [
   {
     method: "PUT",
     path: "/books/{bookId}",
-    handler: (request: Request, h: ResponseToolkit) => {
-      return "Book Data Modified.";
-    },
+    handler: modifyOneBook,
   },
   // Kriteria 7 : API dapat menghapus buku
   {
