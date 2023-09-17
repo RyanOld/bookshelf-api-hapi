@@ -8,8 +8,8 @@ export const resetBooksData = (): void => {
   writeFileSync("src/books.json", "[]");
 };
 
-export const getBooksData = (): string => {
-  return readFileSync(dataPath, "utf-8");
+export const getBooksData = (): BookStorage[] => {
+  return JSON.parse(readFileSync(dataPath, "utf-8"));
 };
 
 export const writeBooksData = (newBooks: BookStorage[]): void => {

@@ -67,8 +67,7 @@ export const addOneBook = async (
   // console.log(booksData);
 
   // append
-  const parsedBooks = JSON.parse(booksData) as BookStorage[];
-  const newBooks = parsedBooks.concat([newBook]);
+  const newBooks = booksData.concat([newBook]);
   // console.log(newBooks);
 
   // rewrite

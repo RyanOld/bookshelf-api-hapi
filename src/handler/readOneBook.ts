@@ -1,5 +1,4 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
-import type { BookStorage } from "../types";
 import { getBooksData } from "./dataManager";
 
 export const readOneBook = async (
@@ -8,7 +7,7 @@ export const readOneBook = async (
 ): Promise<ResponseObject | undefined> => {
   // input checks :
   const { bookId } = request.params;
-  const booksData = JSON.parse(getBooksData()) as BookStorage[];
+  const booksData = getBooksData();
   // console.log(booksData);
 
   let response: ResponseObject | undefined;

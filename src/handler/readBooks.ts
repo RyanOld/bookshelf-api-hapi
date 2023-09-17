@@ -7,8 +7,8 @@ export const readBooks = async (
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
   // read books data.
-  const parsedBooks = JSON.parse(getBooksData()) as BookStorage[];
-  const result = parsedBooks.map((book: BookStorage) => {
+  const booksData = getBooksData();
+  const result = booksData.map((book: BookStorage) => {
     // deconstruct to get only the needed props and rename bookId => id
     const { id, name, publisher } = book;
     return { id, name, publisher };

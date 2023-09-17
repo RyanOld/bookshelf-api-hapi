@@ -35,7 +35,7 @@ export const modifyOneBook = async (
   }
 
   // read books data
-  const booksData = JSON.parse(getBooksData()) as BookStorage[];
+  const booksData = getBooksData();
 
   // take matching single book data
   const { bookId } = request.params;
