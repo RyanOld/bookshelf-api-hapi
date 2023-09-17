@@ -7,7 +7,7 @@ const init = async (): Promise<void> => {
     host: "localhost",
   });
 
-  // set get route to return "hello world"
+  // set routes from ./src/routes.ts
   server.route(routes);
 
   await server.start();
