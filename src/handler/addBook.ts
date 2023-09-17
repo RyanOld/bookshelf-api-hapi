@@ -29,6 +29,16 @@ export const addBook = async (
       })
       .code(400);
   }
+  // check 4 : readpage > pagecount
+  if (readPage > pageCount) {
+    return h
+      .response({
+        status: "fail",
+        message:
+          "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount",
+      })
+      .code(400);
+  }
 
   // generate book id and date added.
   const bookId = nanoid(16);
@@ -54,11 +64,11 @@ export const addBook = async (
   // read
   const dataPath = "src/books.json";
   const booksData = fs.readFileSync(dataPath, "utf-8");
-  console.log(booksData);
+  // console.log(booksData);
   // append
   const parsedBooks = JSON.parse(booksData) as BookStorage[];
   const newBooks = parsedBooks.concat([newBook]);
-  console.log(newBooks);
+  // console.log(newBooks);
   // rewrite
   fs.writeFileSync(dataPath, JSON.stringify(newBooks));
 
@@ -67,7 +77,7 @@ export const addBook = async (
     .response({
       status: "success",
       message: "Buku berhasil ditambahkan",
-      data: newBook,
+      data: { bookId },
     })
     .code(201);
 };
