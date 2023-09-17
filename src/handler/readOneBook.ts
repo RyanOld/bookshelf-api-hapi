@@ -11,26 +11,28 @@ export const readOneBook = async (
   const booksData = JSON.parse(getBooksData()) as BookStorage[];
   // console.log(booksData);
 
-  for (let i = 0; i < booksData.length; i++) {
-    // if matching book id is found, return success response w/ book data.
-    // console.log(bookId === booksData[i].id);
-    if (booksData[i].id === bookId) {
-      return h
+  let response: ResponseObject | undefined;
+  booksData.forEach((book) => {
+    if (book.id === bookId) {
+      response = h
         .response({
           status: "success",
           data: {
-            book: booksData[i],
+            book,
           },
         })
         .code(200);
     }
-  }
+  });
 
   // if matching book id is not found from iterations, return 404.
-  return h
-    .response({
-      status: "fail",
-      message: "Buku tidak ditemukan",
-    })
-    .code(404);
+  if (response !== undefined) {
+    response = h
+      .response({
+        status: "fail",
+        message: "Buku tidak ditemukan",
+      })
+      .code(404);
+  }
+  return response;
 };
