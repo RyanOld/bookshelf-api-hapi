@@ -58,7 +58,7 @@ export const addBook = async (
     insertedAt: dateAdded,
     updatedAt: dateAdded,
   };
-  console.log(newBook);
+  // console.log(newBook);
 
   // file operation : read current json, append, and rewrite file.
   // read
