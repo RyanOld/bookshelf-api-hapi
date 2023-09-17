@@ -13,10 +13,8 @@ export const readOneBook = async (
 
   for (let i = 0; i < booksData.length; i++) {
     // if matching book id is found, return success response w/ book data.
-    console.log(bookId === booksData[i].id);
+    // console.log(bookId === booksData[i].id);
     if (booksData[i].id === bookId) {
-      // TODO : destructure-restructure to cnage bookId prop to id.
-      // const {bookId, } = booksData[i]
       return h
         .response({
           status: "success",
@@ -28,7 +26,7 @@ export const readOneBook = async (
     }
   }
 
-  // if matching book id is not found from forEach iterations, return 404.
+  // if matching book id is not found from iterations, return 404.
   return h
     .response({
       status: "fail",
