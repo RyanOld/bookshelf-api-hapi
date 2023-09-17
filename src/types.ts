@@ -25,7 +25,3 @@ export interface BookStorage {
   insertedAt: string;
   updatedAt: string;
 }
-
-export interface booksResponse {
-  books: BookStorage[];
-}

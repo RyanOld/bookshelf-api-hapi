@@ -1,7 +1,8 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookRequest, BookStorage } from "../types";
 import { nanoid } from "nanoid";
-import * as fs from "fs";
+import { getBooksData } from "./dataManagement/readBooks";
+import { writeBooksData } from "./dataManagement/writeBooks";
 
 export const addBook = async (
   request: Request,
@@ -62,15 +63,14 @@ export const addBook = async (
 
   // file operation : read current json, append, and rewrite file.
   // read
-  const dataPath = "src/books.json";
-  const booksData = fs.readFileSync(dataPath, "utf-8");
-  // console.log(booksData);
+  const booksData = getBooksData();
+
   // append
   const parsedBooks = JSON.parse(booksData) as BookStorage[];
   const newBooks = parsedBooks.concat([newBook]);
-  // console.log(newBooks);
+
   // rewrite
-  fs.writeFileSync(dataPath, JSON.stringify(newBooks));
+  writeBooksData(newBooks);
 
   // return success message.
   return h

@@ -1,5 +1,6 @@
 import type { Request, ResponseToolkit, ServerRoute } from "@hapi/hapi";
 import { addBook } from "./handler/addBook";
+import { readBooks } from "./handler/readBooks";
 
 export const routes: ServerRoute[] = [
   // Kriteria 3 : API dapat menyimpan buku
@@ -12,9 +13,7 @@ export const routes: ServerRoute[] = [
   {
     method: "GET",
     path: "/books",
-    handler: (request: Request, h: ResponseToolkit) => {
-      return "Hello World!";
-    },
+    handler: readBooks,
   },
   // Kriteria 5 : API dapat menampilkan detail buku
   {
