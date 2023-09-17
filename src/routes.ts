@@ -1,8 +1,9 @@
-import type { Request, ResponseToolkit, ServerRoute } from "@hapi/hapi";
+import type { ServerRoute } from "@hapi/hapi";
 import { addOneBook } from "./handler/addOneBook";
 import { readBooks } from "./handler/readBooks";
 import { readOneBook } from "./handler/readOneBook";
 import { modifyOneBook } from "./handler/modifyOneBook";
+import { deleteOneBook } from "./handler/deleteOneBook";
 
 export const routes: ServerRoute[] = [
   // Kriteria 3 : API dapat menyimpan buku
@@ -33,8 +34,6 @@ export const routes: ServerRoute[] = [
   {
     method: "DELETE",
     path: "/books/{bookId}",
-    handler: (request: Request, h: ResponseToolkit) => {
-      return "Book Deleted.";
-    },
+    handler: deleteOneBook,
   },
 ];
