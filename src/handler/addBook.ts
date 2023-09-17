@@ -63,10 +63,12 @@ export const addBook = async (
   // file operation : read current json, append, and rewrite file.
   // read
   const booksData = getBooksData();
+  // console.log(booksData);
 
   // append
   const parsedBooks = JSON.parse(booksData) as BookStorage[];
   const newBooks = parsedBooks.concat([newBook]);
+  // console.log(newBooks);
 
   // rewrite
   writeBooksData(newBooks);
