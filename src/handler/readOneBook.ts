@@ -11,21 +11,21 @@ export const readOneBook = async (
   const booksData = JSON.parse(getBooksData()) as BookStorage[];
   // console.log(booksData);
 
-  booksData.forEach((book) => {
+  for (let i = 0; i < booksData.length; i++) {
     // if matching book id is found, return success response w/ book data.
-    console.log(bookId === book.bookId);
-    // TODO : WARNING : FLAKY TEST. bookId is randomly generated. no guarantee it will match.
-    if (book.bookId === bookId) {
-      const responseData = {
-        status: "success",
-        data: {
-          book,
-        },
-      };
-      console.log(responseData);
-      return h.response(responseData).code(200);
+    console.log(bookId === booksData[i].bookId);
+    if (booksData[i].bookId === bookId) {
+      // TODO : destructure-restructure to cnage bookId prop to id.
+      return h
+        .response({
+          status: "success",
+          data: {
+            book: booksData[i],
+          },
+        })
+        .code(200);
     }
-  });
+  }
 
   // if matching book id is not found from forEach iterations, return 404.
   return h
