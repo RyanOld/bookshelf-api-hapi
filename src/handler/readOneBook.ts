@@ -26,7 +26,7 @@ export const readOneBook = async (
   });
 
   // if matching book id is not found from iterations, return 404.
-  if (response !== undefined) {
+  if (response === undefined) {
     response = h
       .response({
         status: "fail",
