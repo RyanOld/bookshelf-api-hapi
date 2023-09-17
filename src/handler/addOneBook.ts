@@ -28,9 +28,9 @@ export const addOneBook = async (
         message: "Gagal menambahkan buku. Mohon isi nama buku",
       })
       .code(400);
-  }
-  // check 4 : readpage > pagecount
-  if (readPage > pageCount) {
+  } else if (readPage > pageCount) {
+    // check 4 : readpage > pagecount
+
     return h
       .response({
         status: "fail",
