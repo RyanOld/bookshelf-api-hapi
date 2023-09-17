@@ -18,7 +18,17 @@ export const addBook = async (
     readPage,
     reading,
   } = request.payload as BookRequest;
-  // TODO : find a way to typecheck the response payload.
+  // Check request before processing :
+  // Check 1 : no name param
+  if (name === undefined) {
+    // return error 400
+    return h
+      .response({
+        status: "fail",
+        message: "Gagal menambahkan buku. Mohon isi nama buku",
+      })
+      .code(400);
+  }
 
   // generate book id and date added.
   const bookId = nanoid(16);
@@ -52,6 +62,7 @@ export const addBook = async (
   // rewrite
   fs.writeFileSync(dataPath, JSON.stringify(newBooks));
 
+  // return success message.
   return h
     .response({
       status: "success",
