@@ -22,6 +22,6 @@ export interface BookStorage extends Record<string, unknown> {
   readPage: number;
   finished: boolean;
   reading: boolean;
-  insertedAt: Date;
-  updatedAt: Date;
+  insertedAt: string;
+  updatedAt: string;
 }

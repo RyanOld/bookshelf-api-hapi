@@ -1,1 +1,123 @@
-"use strict";var h=Object.create;var n=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var k=Object.getPrototypeOf,d=Object.prototype.hasOwnProperty;var R=(o,e,t,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let r of l(e))!d.call(o,r)&&r!==t&&n(o,r,{get:()=>e[r],enumerable:!(s=u(e,r))||s.enumerable});return o};var m=(o,e,t)=>(t=o!=null?h(k(o)):{},R(e||!o||!o.__esModule?n(t,"default",{value:o,enumerable:!0}):t,o));var i=m(require("@hapi/hapi"));var p=async(o,e)=>{try{let t=o.payload;console.log(t)}catch(t){if(t instanceof Error)return e.response(t)}return e.response("hola")};var a=[{method:"POST",path:"/books",handler:p},{method:"GET",path:"/books",handler:(o,e)=>"Hello World!"},{method:"GET",path:"/books/{bookId}",handler:(o,e)=>"Book Library Returned."},{method:"PUT",path:"/books/{bookId}",handler:(o,e)=>"Book Data Modified."},{method:"DELETE",path:"/books/{bookId}",handler:(o,e)=>"Book Deleted."}];var b=async()=>{let o=i.default.server({port:9e3,host:"localhost"});o.route(a),await o.start(),console.log(`Server berjalan pada ${o.info.uri}`)};b();
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+
+// src/index.ts
+var import_hapi = __toESM(require("@hapi/hapi"));
+
+// src/handler/addBook.ts
+var fs = __toESM(require("fs"));
+var import_nanoid = require("nanoid");
+var addBook = async (request, h) => {
+  try {
+    const {
+      name,
+      year,
+      author,
+      summary,
+      publisher,
+      pageCount,
+      readPage,
+      reading
+    } = request.payload;
+    const bookId = (0, import_nanoid.nanoid)(16);
+    const dateAdded = (/* @__PURE__ */ new Date()).toISOString();
+    const addedBook = {
+      id: bookId,
+      name,
+      year,
+      author,
+      summary,
+      publisher,
+      pageCount,
+      readPage,
+      finished: false,
+      reading,
+      insertedAt: dateAdded,
+      updatedAt: dateAdded
+    };
+    const newBooks = JSON.parse(
+      fs.readFileSync("src/books.json", "utf-8")
+    ).push(addedBook);
+    fs.writeFileSync("src/books.json", JSON.stringify(newBooks));
+  } catch (error) {
+    if (error instanceof Error) {
+      return h.response(error);
+    }
+  }
+  return h.response("all okay");
+};
+
+// src/routes.ts
+var routes = [
+  // Kriteria 3 : API dapat menyimpan buku
+  {
+    method: "POST",
+    path: "/books",
+    handler: addBook
+  },
+  // Kriteria 4 : API dapat menampilkan seluruh buku
+  {
+    method: "GET",
+    path: "/books",
+    handler: (request, h) => {
+      return "Hello World!";
+    }
+  },
+  // Kriteria 5 : API dapat menampilkan detail buku
+  {
+    method: "GET",
+    path: "/books/{bookId}",
+    handler: (request, h) => {
+      return "Book Library Returned.";
+    }
+  },
+  // Kriteria 6 : API dapat mengubah data buku
+  {
+    method: "PUT",
+    path: "/books/{bookId}",
+    handler: (request, h) => {
+      return "Book Data Modified.";
+    }
+  },
+  // Kriteria 7 : API dapat menghapus buku
+  {
+    method: "DELETE",
+    path: "/books/{bookId}",
+    handler: (request, h) => {
+      return "Book Deleted.";
+    }
+  }
+];
+
+// src/index.ts
+var init = async () => {
+  const server = import_hapi.default.server({
+    port: 9e3,
+    host: "localhost"
+  });
+  server.route(routes);
+  await server.start();
+  console.log(`Server berjalan pada ${server.info.uri}`);
+};
+void init();
