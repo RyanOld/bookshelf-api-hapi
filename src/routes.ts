@@ -1,13 +1,12 @@
-import type { Request, ResponseToolkit } from "@hapi/hapi";
+import type { Request, ResponseToolkit, ServerRoute } from "@hapi/hapi";
+import { bookWrite } from "./handler/bookWrite";
 
-export const routes = [
+export const routes: ServerRoute[] = [
   // Kriteria 3 : API dapat menyimpan buku
   {
     method: "POST",
     path: "/books",
-    handler: (request: Request, h: ResponseToolkit) => {
-      return "Book Added.";
-    },
+    handler: bookWrite,
   },
   // Kriteria 4 : API dapat menampilkan seluruh buku
   {
