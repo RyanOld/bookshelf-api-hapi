@@ -43,7 +43,7 @@ export const modifyOneBook = async (
     return bookId === book.id;
   });
 
-  // return error if book with matching id not found
+  // return error if book with matching id is not found
   if (matchingBook === undefined) {
     return h
       .response({
@@ -67,13 +67,13 @@ export const modifyOneBook = async (
       insertedAt: matchingBook.insertedAt,
       updatedAt: new Date().toISOString(),
     };
-    // start remove -> insert -> rewrite operation
+    // splice old book data out, put newBookData in.
     booksData.splice(
       booksData.findIndex((book) => bookId === book.id),
       1,
       newBookData
     );
-    // rewrite
+    // rewrite books data(books.json) with the updated values.
     writeBooksData(booksData);
 
     // send success message
