@@ -4,10 +4,16 @@
         "commonjs": true,
         "es2021": true
     },
-    "extends": "standard-with-typescript",
+    "extends": [
+        "standard-with-typescript", 
+        "prettier"
+    ],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
-    "rules": {
+    "rules":{
+        "indent":"off",
+        "@typescript-eslint/indent": "error"
     }
+    
 }
