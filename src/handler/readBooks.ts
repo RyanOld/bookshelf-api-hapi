@@ -10,8 +10,8 @@ export const readBooks = async (
   const parsedBooks = JSON.parse(getBooksData()) as BookStorage[];
   const result = parsedBooks.map((book: BookStorage) => {
     // deconstruct to get only the needed props and rename bookId => id
-    const { bookId, name, publisher } = book;
-    return { id: bookId, name, publisher };
+    const { id, name, publisher } = book;
+    return { id, name, publisher };
   });
 
   return h

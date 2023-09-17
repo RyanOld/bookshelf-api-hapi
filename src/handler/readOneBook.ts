@@ -13,9 +13,10 @@ export const readOneBook = async (
 
   for (let i = 0; i < booksData.length; i++) {
     // if matching book id is found, return success response w/ book data.
-    console.log(bookId === booksData[i].bookId);
-    if (booksData[i].bookId === bookId) {
+    console.log(bookId === booksData[i].id);
+    if (booksData[i].id === bookId) {
       // TODO : destructure-restructure to cnage bookId prop to id.
+      // const {bookId, } = booksData[i]
       return h
         .response({
           status: "success",

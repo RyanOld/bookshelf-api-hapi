@@ -45,7 +45,7 @@ export const addBook = async (
   const dateAdded = new Date().toISOString();
   // create book data with added id and date added.
   const newBook: BookStorage = {
-    bookId,
+    id: bookId,
     name,
     year,
     author,
