@@ -1,6 +1,6 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookStorage } from "../types";
-import { getBooksData } from "./dataManagement/readBooks";
+import { getBooksData } from "./dataManager";
 
 export const readBooks = async (
   request: Request,
