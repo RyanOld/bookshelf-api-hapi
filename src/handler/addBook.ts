@@ -53,7 +53,8 @@ export const addBook = async (
     publisher,
     pageCount,
     readPage,
-    finished: false,
+    // set finished = true if readpage === pagecount
+    finished: readPage === pageCount,
     reading,
     insertedAt: dateAdded,
     updatedAt: dateAdded,
