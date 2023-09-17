@@ -1,7 +1,7 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookRequest } from "../types";
 
-export const bookWrite = async (
+export const addBook = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject> => {
