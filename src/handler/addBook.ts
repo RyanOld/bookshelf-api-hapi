@@ -1,51 +1,56 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookRequest, BookStorage } from "../types";
-import * as fs from "fs";
 import { nanoid } from "nanoid";
+import * as fs from "fs";
 
 export const addBook = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
-  // try block for looking for errors.
-  try {
-    const {
-      name,
-      year,
-      author,
-      summary,
-      publisher,
-      pageCount,
-      readPage,
-      reading,
-    } = request.payload as BookRequest;
+  // destructurize request payload to add id etc for json append.
+  const {
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    reading,
+  } = request.payload as BookRequest;
+  // TODO : find a way to typecheck the response payload.
 
-    const bookId = nanoid(16);
-    const dateAdded = new Date().toISOString();
-    const addedBook: BookStorage = {
-      id: bookId,
-      name,
-      year,
-      author,
-      summary,
-      publisher,
-      pageCount,
-      readPage,
-      finished: false,
-      reading,
-      insertedAt: dateAdded,
-      updatedAt: dateAdded,
-    };
-    const newBooks: BookStorage[] = JSON.parse(
-      fs.readFileSync("src/books.json", "utf-8")
-    ).push(addedBook);
-    fs.writeFileSync("src/books.json", JSON.stringify(newBooks));
-  } catch (error) {
-    // if an error is catched, send back error as response.
-    if (error instanceof Error) {
-      return h.response(error);
-    }
-  }
+  // generate book id and date added.
+  const bookId = nanoid(16);
+  const dateAdded = new Date().toISOString();
+  // create book data with added id and date added.
+  const newBook: BookStorage = {
+    id: bookId,
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    finished: false,
+    reading,
+    insertedAt: dateAdded,
+    updatedAt: dateAdded,
+  };
+  console.log(newBook);
 
-  return h.response("all okay");
+  // file operation : read current json, append, and rewrite file.
+  // read
+  const dataPath = "src/books.json";
+  const booksData = fs.readFileSync(dataPath, "utf-8");
+  console.log(booksData);
+  // append
+  const parsedBook = JSON.parse(booksData) as BookStorage[];
+  const newBooks = parsedBook.concat([newBook]);
+  console.log(newBooks);
+  // rewrite
+  fs.writeFileSync(dataPath, JSON.stringify(newBooks));
+
+  return h.response({ books: newBooks });
 };

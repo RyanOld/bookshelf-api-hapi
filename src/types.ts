@@ -1,5 +1,5 @@
 // assert BookRequest as "any object"
-export interface BookRequest extends Record<string, unknown> {
+export interface BookRequest {
   name: string;
   year: number;
   author: string;
@@ -11,7 +11,7 @@ export interface BookRequest extends Record<string, unknown> {
 }
 
 // assert BookStorage as "any object"
-export interface BookStorage extends Record<string, unknown> {
+export interface BookStorage {
   id: string;
   name: string;
   year: number;
@@ -24,4 +24,8 @@ export interface BookStorage extends Record<string, unknown> {
   reading: boolean;
   insertedAt: string;
   updatedAt: string;
+}
+
+export interface booksResponse {
+  books: BookStorage[];
 }
