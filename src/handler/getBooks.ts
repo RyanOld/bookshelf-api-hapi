@@ -2,21 +2,20 @@ import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookStorage } from "../types";
 import { getBooksData } from "./utils/dataManager";
 import { getBooksWithReading } from "./subhandler/getBooksWithReading";
+import { getBooksWithFinished } from "./subhandler/getBooksWithFinished";
 
 export const getBooks = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
   // check for query parameters to be handled separately.
-  // console.log(request.query);
-  // const { readingQuery, finishedQuery, nameQuery } = request.query;
-  const { reading } = request.query;
+  const { reading, finished } = request.query;
   if (typeof reading !== "undefined") {
     return getBooksWithReading(h, reading);
+  } else if (typeof finished !== "undefined") {
+    return getBooksWithFinished(h, finished);
   }
-  // else if (typeof finishedQuery !== "undefined") {
-  //   return getBooksWithFinished(h, finishedQuery);
-  // } else if (typeof nameQuery !== "undefined") {
+  // else if (typeof nameQuery !== "undefined") {
   //   return getBooksWithName(h, nameQuery);
   // }
 
