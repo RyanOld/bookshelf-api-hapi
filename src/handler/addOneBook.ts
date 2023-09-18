@@ -59,16 +59,13 @@ export const addOneBook = async (
     insertedAt: dateAdded,
     updatedAt: dateAdded,
   };
-  // console.log(newBook);
 
   // file operation : read current json, append, and rewrite file.
   // read
   const booksData = getBooksData();
-  // console.log(booksData);
 
   // append
   const newBooks = booksData.concat([newBook]);
-  // console.log(newBooks);
 
   // rewrite
   writeBooksData(newBooks);

@@ -77,11 +77,9 @@ export const modifyBookWithId = async (
     writeBooksData(booksData);
 
     // send success message
-    return h
-      .response({
-        status: "success",
-        message: "Buku berhasil diperbarui",
-      })
-      .code(200);
+    return h.response({
+      status: "success",
+      message: "Buku berhasil diperbarui",
+    });
   }
 };

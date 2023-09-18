@@ -12,7 +12,7 @@ export const getBooksWithName = (
   const filteredBooks = booksData.filter((book) =>
     book.name.toLowerCase().includes(name.toLowerCase())
   );
-  console.log(filteredBooks);
+
   // take only the id, name, and publisher properties from result to be returned
   const result = filteredBooks.map((book) => {
     return { id: book.id, name: book.name, publisher: book.publisher };

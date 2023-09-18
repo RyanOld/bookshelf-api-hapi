@@ -28,10 +28,8 @@ export const deleteBookWithId = async (
   );
   writeBooksData(booksData);
   // send success message
-  return h
-    .response({
-      status: "success",
-      message: "Buku berhasil dihapus",
-    })
-    .code(200);
+  return h.response({
+    status: "success",
+    message: "Buku berhasil dihapus",
+  });
 };

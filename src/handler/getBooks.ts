@@ -11,6 +11,8 @@ export const getBooks = async (
 ): Promise<ResponseObject | undefined> => {
   // check for query parameters to be handled separately.
   const { reading, finished, name } = request.query;
+
+  // handle get operation depending on which query parameter is defined.
   if (typeof reading !== "undefined") {
     return getBooksWithReading(h, reading);
   } else if (typeof finished !== "undefined") {
@@ -18,6 +20,7 @@ export const getBooks = async (
   } else if (typeof name !== "undefined") {
     return getBooksWithName(h, name);
   }
+  // if none of the above 3 query params are defined, run below logics.
 
   // read books data.
   const booksData = getBooksData();
@@ -27,10 +30,8 @@ export const getBooks = async (
     return { id, name, publisher };
   });
 
-  return h
-    .response({
-      status: "success",
-      data: { books: result },
-    })
-    .code(200);
+  return h.response({
+    status: "success",
+    data: { books: result },
+  });
 };

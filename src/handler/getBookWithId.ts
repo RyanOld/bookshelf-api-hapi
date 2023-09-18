@@ -8,19 +8,16 @@ export const getBookWithId = async (
   // input checks :
   const { bookId } = request.params;
   const booksData = getBooksData();
-  // console.log(booksData);
 
   let response: ResponseObject | undefined;
   booksData.forEach((book) => {
     if (book.id === bookId) {
-      response = h
-        .response({
-          status: "success",
-          data: {
-            book,
-          },
-        })
-        .code(200);
+      response = h.response({
+        status: "success",
+        data: {
+          book,
+        },
+      });
     }
   });
 
