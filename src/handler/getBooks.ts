@@ -6,6 +6,15 @@ export const getBooks = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
+  // check for query parameters to be handled separately.
+  // const { readingQuery, finishedQuery, nameQuery } = request.query;
+  // if (typeof readingQuery === "undefined") {
+  //   return getBooksWithReading()
+  // } else if (typeof finishedQuery === "undefined") {
+  //   return getBooksWithFinished()
+  // } else if (typeof nameQuery === "undefined") {
+  //   return getBooksWithName()
+  // }
   // read books data.
   const booksData = getBooksData();
   const result = booksData.map((book: BookStorage) => {
