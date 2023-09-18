@@ -1,6 +1,7 @@
 # Bookshelf API
 This app is made as a part of my participation in :
-### Dicoding Indonesia's Backend Development Course.
+### Dicoding Indonesia's Beginner Backend Development Course.
+as Aziz Nurhidayat Adriyanto in DevOps and Back-End Developer Scholarship Program 
 ###
 
 Below is how to install this project :
