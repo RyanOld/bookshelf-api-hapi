@@ -3,21 +3,21 @@ import type { BookStorage } from "../types";
 import { getBooksData } from "./utils/dataManager";
 import { getBooksWithReading } from "./subhandler/getBooksWithReading";
 import { getBooksWithFinished } from "./subhandler/getBooksWithFinished";
+import { getBooksWithName } from "./subhandler/getBooksWithName";
 
 export const getBooks = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
   // check for query parameters to be handled separately.
-  const { reading, finished } = request.query;
+  const { reading, finished, name } = request.query;
   if (typeof reading !== "undefined") {
     return getBooksWithReading(h, reading);
   } else if (typeof finished !== "undefined") {
     return getBooksWithFinished(h, finished);
+  } else if (typeof name !== "undefined") {
+    return getBooksWithName(h, name);
   }
-  // else if (typeof nameQuery !== "undefined") {
-  //   return getBooksWithName(h, nameQuery);
-  // }
 
   // read books data.
   const booksData = getBooksData();
