@@ -1,9 +1,9 @@
 import type { ServerRoute } from "@hapi/hapi";
 import { addOneBook } from "./handler/addOneBook";
-import { readBooks } from "./handler/readBooks";
-import { readOneBook } from "./handler/readOneBook";
-import { modifyOneBook } from "./handler/modifyOneBook";
-import { deleteOneBook } from "./handler/deleteOneBook";
+import { getBooks } from "./handler/getBooks";
+import { getBookWithId } from "./handler/getBookWithId";
+import { modifyBookWithId } from "./handler/modifyBookWithId";
+import { deleteBookWithId } from "./handler/deleteBookWithId";
 
 export const routes: ServerRoute[] = [
   // Kriteria 3 : API dapat menyimpan buku
@@ -16,24 +16,24 @@ export const routes: ServerRoute[] = [
   {
     method: "GET",
     path: "/books",
-    handler: readBooks,
+    handler: getBooks,
   },
   // Kriteria 5 : API dapat menampilkan detail buku
   {
     method: "GET",
     path: "/books/{bookId}",
-    handler: readOneBook,
+    handler: getBookWithId,
   },
   // Kriteria 6 : API dapat mengubah data buku
   {
     method: "PUT",
     path: "/books/{bookId}",
-    handler: modifyOneBook,
+    handler: modifyBookWithId,
   },
   // Kriteria 7 : API dapat menghapus buku
   {
     method: "DELETE",
     path: "/books/{bookId}",
-    handler: deleteOneBook,
+    handler: deleteBookWithId,
   },
 ];

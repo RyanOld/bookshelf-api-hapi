@@ -1,16 +1,16 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 // import type { BookRequest, BookStorage } from "../types";
-import { getBooksData, writeBooksData } from "./dataManager";
-import { findBookId } from "./findBookId";
+import { getBooksData, writeBooksData } from "./utils/dataManager";
+import { findBookWithId } from "./utils/findBookWithId";
 
-export const deleteOneBook = async (
+export const deleteBookWithId = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
   // do book id lookup. if not found, send error.
   const { bookId } = request.params;
   const booksData = getBooksData();
-  const matchingBook = findBookId(booksData, bookId);
+  const matchingBook = findBookWithId(booksData, bookId);
   if (typeof matchingBook === "undefined") {
     // send error : book not found
     return h

@@ -1,7 +1,7 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookRequest, BookStorage } from "../types";
 import { nanoid } from "nanoid";
-import { getBooksData, writeBooksData } from "./dataManager";
+import { getBooksData, writeBooksData } from "./utils/dataManager";
 
 export const addOneBook = async (
   request: Request,

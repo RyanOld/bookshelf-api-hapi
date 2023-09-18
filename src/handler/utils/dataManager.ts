@@ -1,4 +1,4 @@
-import type { BookStorage } from "../types";
+import type { BookStorage } from "../../types";
 import { readFileSync, writeFileSync } from "fs";
 
 // This file contains all the needed functions to manipulate the "database"

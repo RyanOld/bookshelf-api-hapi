@@ -1,6 +1,6 @@
 import Hapi from "@hapi/hapi";
 import { routes } from "./routes";
-import { resetBooksData } from "./handler/dataManager";
+import { resetBooksData } from "./handler/utils/dataManager";
 
 const init = async (): Promise<void> => {
   const server = Hapi.server({

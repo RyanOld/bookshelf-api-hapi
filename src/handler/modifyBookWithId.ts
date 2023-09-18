@@ -1,8 +1,8 @@
 import type { Request, ResponseToolkit, ResponseObject } from "@hapi/hapi";
 import type { BookRequest, BookStorage } from "../types";
-import { getBooksData, writeBooksData } from "./dataManager";
+import { getBooksData, writeBooksData } from "./utils/dataManager";
 
-export const modifyOneBook = async (
+export const modifyBookWithId = async (
   request: Request,
   h: ResponseToolkit
 ): Promise<ResponseObject | undefined> => {
