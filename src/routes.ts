@@ -24,27 +24,6 @@ export const routes: ServerRoute[] = [
     path: "/books/{bookId}",
     handler: readOneBook,
   },
-
-  // Kriteria OPSIONAL :
-  // Kriteria Opsional 1 & 2 : Get all "reading"/"unreading" books.
-  {
-    method: "GET",
-    path: "/books?reading={reading}",
-    handler: getReadingBooks,
-  },
-  // Kriteria Opsional 3 & 4 : Get all "finished"/"Unfinished" books.
-  {
-    method: "GET",
-    path: "/books?finished={finished}",
-    handler: getFinishedBooks,
-  },
-  // Kriteria Opsional 5 : Get all books that contains "Dicoding" in its name.
-  {
-    method: "GET",
-    path: "/books?name={name}",
-    handler: getBooksWithName,
-  },
-
   // Kriteria 6 : API dapat mengubah data buku
   {
     method: "PUT",
