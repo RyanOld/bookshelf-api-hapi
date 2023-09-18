@@ -8,7 +8,10 @@ export const getBooksWithName = (
   // read books data, iterate with forEach, return result array.
   const booksData = getBooksData();
 
-  const filteredBooks = booksData.filter((book) => book.name.includes(name));
+  // name comparison : convert both to lowercase to enable case-insensitive comparison.
+  const filteredBooks = booksData.filter((book) =>
+    book.name.toLowerCase().includes(name.toLowerCase())
+  );
   console.log(filteredBooks);
   // take only the id, name, and publisher properties from result to be returned
   const result = filteredBooks.map((book) => {
