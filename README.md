@@ -2,6 +2,9 @@
 This app is made as a part of my participation in :
 ### Dicoding Indonesia's Beginner Backend Development Course.
 in DevOps and Back-End Developer Scholarship Program 
+
+* Under no curcumstances does this project be reused to submit towards the same course or any similar courses.
+* Contributors are not liable for the use of this software as stated in LICENSE.
 ###
 
 Below is how to install this project :
